@@ -10,22 +10,51 @@ main {
 }
 
 .device{
-    height: 60%;
-    width: 500px;
+    height: 80%;
+    width: 400px;
     border: black solid 1px;
 }
 
-.screen{
+.screencontainer{
     height: 25%;
-    width: 500px;
-    border: gray solid 1px;
+    background-color: rgb(82, 82, 82);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.screen{
+    border: black solid 1px;
+    height: 80%;
+    width: 90%;
+    border-radius: 15px;
+    background-color: aliceblue;
+
 }
 
 .buttonRow{
     height: 15%;
-    width: 500px;
-    border: black dashed 1px;
+    width: 400px;
+    border: lightgray solid 1px;
     display: flex;
-    justify-content: space-around;  
+    justify-content: space-evenly;
+    align-items: center;
 
+    background-color: darkgray;
+
+}
+
+button{
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    font-size: larger;
+   
+}
+
+.larger{
+    flex: 0.72;;
+    margin-left: 5px;
 }
