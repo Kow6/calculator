@@ -21,8 +21,27 @@ function operate(a, b, operator){
         
         case 'divide':
             return divide(a, b)
-            
+        
     }
 }
 
-console.log(operate(2,4, 'multiply'))
+//function
+let a
+function clickOne() {
+    a = 1
+}
+
+function clickTwo() {
+    a = 2
+}
+
+//add event listeners to buttons to store values into the variables when pushed
+
+const oneButton = document.querySelector('#one');
+oneButton.addEventListener('click', () => clickOne())
+
+const twoButton = document.querySelector('#two');
+oneButton.addEventListener('click', () => clickTwo())
+
+
+
