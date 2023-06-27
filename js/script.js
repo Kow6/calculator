@@ -25,7 +25,48 @@ function operate(a, b, operator){
     }
 }
 
-//function
+//Function to add text to content to display area
+
+
+
+const equationDisplay = document.querySelector('.equationDisplay');
+
+const numberButtons = document.querySelectorAll('.number');
+
+//Funtion to call to put the number in the display when a button is clicked
+
+
+
+
+
+const updateDisplay = function (input) {
+   
+    equationDisplay.textContent = input;
+};
+
+
+
+
+numberButtons.forEach(numberButton => {
+    
+    numberButton.addEventListener('click', () => 
+    updateDisplay(numberButton.textContent)
+   
+  
+    );
+})
+
+
+
+
+
+
+//get the text content of the button
+//put that text content in displayEquation w/addtextcontent (copy) => displayEquation.textContent = copy
+
+
+
+/* OLD WAY w/ funtion per # function
 let a
 function clickOne() {
     a = 1
@@ -35,13 +76,16 @@ function clickTwo() {
     a = 2
 }
 
-//add event listeners to buttons to store values into the variables when pushed
-
 const oneButton = document.querySelector('#one');
 oneButton.addEventListener('click', () => clickOne())
 
 const twoButton = document.querySelector('#two');
 oneButton.addEventListener('click', () => clickTwo())
+*/
+
+
+
+
 
 
 
