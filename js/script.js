@@ -85,13 +85,19 @@ const operationPressed = function(input){
     if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
         equalsPressed();
         }
-    console.log(displayContainer)
+
+        
+if (operatorValue === ''){ //put this in an if statement to not allow operator's to be hit multiple times in a row
     calculationRun = ''
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
-    
     equationDisplay.textContent = displayContainer;
+}    
+    
+else{console.log(operatorValue)}
+
+
 
 
 }
@@ -102,7 +108,7 @@ const equalsPressed = function(){
     equationDisplay.textContent = displayContainer;
     firstValue = displayContainer;
     secondValue = ''
-    operatorValue -'';
+    operatorValue = '';
     calculationRun = 'yes'
 
     
