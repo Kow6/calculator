@@ -75,7 +75,7 @@ const updateDisplay = function (input) {
     //if input is a period and the new variable has period is full do this. will need to clear this variable on clear and operation
   
     
-    if(input === '.' && hasDecimal === true){
+    if(input === '.' && hasDecimal === true){ //decimal check
         return 
     }
 
@@ -83,7 +83,7 @@ const updateDisplay = function (input) {
         hasDecimal = true
     }
 
-    //new code to test ^^
+    
 
     calculationRun = ''
     displayContainer = displayContainer + input
@@ -93,7 +93,7 @@ const updateDisplay = function (input) {
         secondValue = secondValue + input;
         
     }
-console.log(hasDecimal)
+
 
 };
 
@@ -112,7 +112,7 @@ if (operatorValue === ''){ //put this in an if statement to not allow operator's
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
     equationDisplay.textContent = displayContainer;
-    hasDecimal = false //new code to test
+    hasDecimal = false //clear decimal blocker
 }    
     
 else{console.log(operatorValue)}
@@ -126,7 +126,7 @@ const equalsPressed = function(){
     secondValue = ''
     operatorValue = '';
     calculationRun = 'yes'
-    hasDecimal = false
+    hasDecimal = false //clear decimal blocker
 
     
 }
