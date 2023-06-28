@@ -8,19 +8,19 @@ function divide(a, b) {return a / b}
 function operate(a, b, operator){
     switch(operator) {
         case '+':
-            return addition(a, b).toFixed(5)
+            return parseFloat(addition(a, b).toFixed(5))
             
         
         case '-':
-            return subtract(a, b).toFixed(5)
+            return parseFloat(subtract(a, b).toFixed(5))
             
         
         case 'x':
-            return multiply(a, b).toFixed(5)
+            return parseFloat(multiply(a, b).toFixed(5))
             
         
         case '÷':
-            return divide(a, b).toFixed(5)
+            return parseFloat(divide(a, b).toFixed(5))
         
     }
 }
