@@ -8,7 +8,7 @@ function divide(a, b) {return a / b}
 function operate(a, b, operator){
     
     if(operator === '÷' && b === 0){
-        return 'Divide by 0... End of World'
+        return 'No,No,No'
     }
 
     switch(operator) {
@@ -79,16 +79,18 @@ const updateDisplay = function (input) {
 };
 
 const operationPressed = function(input){
-    if (displayContainer === 'Divide by 0... End of World'){
-        clearPressed() ///not quite right
+    if (displayContainer === 'No,No,No' || displayContainer === ''){
+        updateDisplay(0)
     }
     if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
         equalsPressed();
         }
+    console.log(displayContainer)
     calculationRun = ''
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
+    
     equationDisplay.textContent = displayContainer;
 
 
