@@ -6,6 +6,11 @@ function divide(a, b) {return a / b}
 
 //operation funtion
 function operate(a, b, operator){
+    
+    if(operator === '÷' && b === 0){
+        return 'Divide by 0... End of World'
+    }
+
     switch(operator) {
         case '+':
             return parseFloat(addition(a, b).toFixed(5))
@@ -60,7 +65,7 @@ const clearButton = document.querySelector('.clear')
 const updateDisplay = function (input) {
     
     if (calculationRun === 'yes'){
-        console.log(calculationRun)
+     
         clearPressed()
     }
     calculationRun = ''
@@ -74,11 +79,12 @@ const updateDisplay = function (input) {
 };
 
 const operationPressed = function(input){
-    if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
-        console.log('butt')
-        equalsPressed();
-        
+    if (displayContainer === 'Divide by 0... End of World'){
+        clearPressed() ///not quite right
     }
+    if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
+        equalsPressed();
+        }
     calculationRun = ''
     firstValue = displayContainer;
     operatorValue = input
