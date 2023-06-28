@@ -4,6 +4,7 @@ function subtract(a, b) {return a - b}
 function multiply(a, b) {return a * b}
 function divide(a, b) {return a / b}
 
+
 //operation funtion
 function operate(a, b, operator){
     
@@ -26,6 +27,8 @@ function operate(a, b, operator){
         
         case '÷':
             return parseFloat(divide(a, b).toFixed(5))
+
+
         
     }
 }
@@ -58,13 +61,13 @@ const equalsButton = document.querySelector('.equals')
 
 const clearButton = document.querySelector('.clear')
 
+const percentButton = document.querySelector('.percent')
 
 
 
 
-//Function to call to put the number in the display when a button is clicked
 
-
+//Function to call to put the number in the display when a button is clicked. Does not set the actual values of the variables.
     
 const updateDisplay = function (input) {
     
@@ -82,7 +85,6 @@ const updateDisplay = function (input) {
     if(input === '.'){
         hasDecimal = true
     }
-
     
 
     calculationRun = ''
@@ -131,6 +133,8 @@ const equalsPressed = function(){
     
 }
 
+
+
 const clearPressed  = function()
 {displayContainer = '';
 firstValue = displayContainer;
@@ -140,6 +144,15 @@ equationDisplay.textContent = displayContainer;
  } 
 
 
+const percentPressed = function(){
+    if (operatorValue != ''){
+        return
+    }
+    firstValue = displayContainer;
+    secondValue = .01
+    operatorValue = 'x'
+     equalsPressed()
+}
 
 //Adding the event listener to the the number buttons to put them in the display
 
@@ -159,8 +172,11 @@ equalsButton.addEventListener('click', () => equalsPressed())
 
 clearButton.addEventListener('click', () => clearPressed())
 
+percentButton.addEventListener('click', () => percentPressed()
+ )
 
-console.log(calculationRun)
+
+
 
 
 
