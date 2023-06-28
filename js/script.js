@@ -37,6 +37,7 @@ let operatorValue = ''
 
 let displayContainer =''
 
+let calculationRun = ''
 
 const equationDisplay = document.querySelector('.equationDisplay');
 
@@ -57,6 +58,12 @@ const clearButton = document.querySelector('.clear')
 
     
 const updateDisplay = function (input) {
+    
+    if (calculationRun === 'yes'){
+        console.log(calculationRun)
+        clearPressed()
+    }
+    calculationRun = ''
     displayContainer = displayContainer + input
     equationDisplay.textContent = displayContainer;
     if (operatorValue != ''){
@@ -68,9 +75,11 @@ const updateDisplay = function (input) {
 
 const operationPressed = function(input){
     if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
+        console.log('butt')
         equalsPressed();
         
     }
+    calculationRun = ''
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
@@ -85,7 +94,8 @@ const equalsPressed = function(){
     equationDisplay.textContent = displayContainer;
     firstValue = displayContainer;
     secondValue = ''
-    operatorValue -''
+    operatorValue -'';
+    calculationRun = 'yes'
 
     
 }
@@ -119,7 +129,7 @@ equalsButton.addEventListener('click', () => equalsPressed())
 clearButton.addEventListener('click', () => clearPressed())
 
 
-
+console.log(calculationRun)
 
 
 
