@@ -61,17 +61,23 @@ const updateDisplay = function (input) {
     equationDisplay.textContent = displayContainer;
     if (operatorValue != ''){
         secondValue = secondValue + input;
-    } 
+        
+    }
+
 };
 
 const operationPressed = function(input){
+    if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
+        equalsPressed();
+        
+    }
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
     equationDisplay.textContent = displayContainer;
 
-}
 
+}
 
 
 const equalsPressed = function(){
@@ -114,7 +120,7 @@ clearButton.addEventListener('click', () => clearPressed())
 
 
 
-.addEventListener('click', () => clickTwo())
+
 
 
 
