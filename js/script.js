@@ -44,6 +44,10 @@ let displayContainer =''
 
 let calculationRun = ''
 
+//new code to test
+
+let hasDecimal = false
+
 const equationDisplay = document.querySelector('.equationDisplay');
 
 const numberButtons = document.querySelectorAll('.number');
@@ -64,17 +68,32 @@ const clearButton = document.querySelector('.clear')
     
 const updateDisplay = function (input) {
     
-    if (calculationRun === 'yes'){
-     
-        clearPressed()
+    if (calculationRun === 'yes'){ //a calculation has already been run so entering a new number w/ no operator clear's the display.
+       clearPressed()
     }
+
+    //if input is a period and the new variable has period is full do this. will need to clear this variable on clear and operation
+  
+    
+    if(input === '.' && hasDecimal === true){
+        return 
+    }
+
+    if(input === '.'){
+        hasDecimal = true
+    }
+
+    //new code to test ^^
+
     calculationRun = ''
     displayContainer = displayContainer + input
     equationDisplay.textContent = displayContainer;
-    if (operatorValue != ''){
+    
+    if (operatorValue != ''){ //if the operatorValue is full that means the second value of the equation should be being populated
         secondValue = secondValue + input;
         
     }
+console.log(hasDecimal)
 
 };
 
@@ -88,18 +107,15 @@ const operationPressed = function(input){
 
         
 if (operatorValue === ''){ //put this in an if statement to not allow operator's to be hit multiple times in a row
-    calculationRun = ''
+    calculationRun = '' //resets the calculation run variable to let program know the display does not need to clear on next number input
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
     equationDisplay.textContent = displayContainer;
+    hasDecimal = false //new code to test
 }    
     
 else{console.log(operatorValue)}
-
-
-
-
 }
 
 
@@ -110,6 +126,7 @@ const equalsPressed = function(){
     secondValue = ''
     operatorValue = '';
     calculationRun = 'yes'
+    hasDecimal = false
 
     
 }
