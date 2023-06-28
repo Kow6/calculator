@@ -37,19 +37,19 @@ function operate(a, b, operator){
 
 //setting the variables
 
+let displayContainer =''
+
 let firstValue = ''
 
 let secondValue = ''
 
 let operatorValue = ''
 
-let displayContainer =''
-
-let calculationRun = ''
-
-//new code to test
+let calculationRun = false
 
 let hasDecimal = false
+
+let deleteBlocked = false
 
 const equationDisplay = document.querySelector('.equationDisplay');
 
@@ -63,6 +63,8 @@ const clearButton = document.querySelector('.clear')
 
 const percentButton = document.querySelector('.percent')
 
+const deleteButton = document.querySelector('.delete')
+
 
 
 
@@ -71,7 +73,7 @@ const percentButton = document.querySelector('.percent')
     
 const updateDisplay = function (input) {
     
-    if (calculationRun === 'yes'){ //a calculation has already been run so entering a new number w/ no operator clear's the display.
+    if (calculationRun === true){ //a calculation has already been run so entering a new number w/ no operator clear's the display.
        clearPressed()
     }
 
@@ -86,8 +88,8 @@ const updateDisplay = function (input) {
         hasDecimal = true
     }
     
-
-    calculationRun = ''
+    calculationRun = false
+    deleteBlocked = false
     displayContainer = displayContainer + input
     equationDisplay.textContent = displayContainer;
     
@@ -109,7 +111,7 @@ const operationPressed = function(input){
 
         
 if (operatorValue === ''){ //put this in an if statement to not allow operator's to be hit multiple times in a row
-    calculationRun = '' //resets the calculation run variable to let program know the display does not need to clear on next number input
+    calculationRun = false //resets the calculation run variable to let program know the display does not need to clear on next number input
     firstValue = displayContainer;
     operatorValue = input
     displayContainer = displayContainer + ' ' + input + ' ';
@@ -124,13 +126,14 @@ else{console.log(operatorValue)}
 const equalsPressed = function(){
     displayContainer = (operate(Number(firstValue), Number(secondValue), operatorValue))
     equationDisplay.textContent = displayContainer;
-    firstValue = displayContainer;
-    secondValue = ''
-    operatorValue = '';
-    calculationRun = 'yes'
-    hasDecimal = false //clear decimal blocker
-
     
+    //set up variables for next operation
+    firstValue = displayContainer;
+    secondValue = '' 
+    operatorValue = ''; 
+    calculationRun = true 
+    hasDecimal = false 
+ 
 }
 
 
@@ -154,6 +157,41 @@ const percentPressed = function(){
      equalsPressed()
 }
 
+const deletePressed = function(){
+    
+    if (displayContainer.slice(-1) === 'x' 
+        || displayContainer.slice(-1) === '-' 
+        || displayContainer.slice(-1) === '+' 
+        || displayContainer.slice(-1) === '÷')
+    {
+        deleteBlocked = true
+    }
+    
+    if (deleteBlocked === true){
+        console.log(deleteBlocked)
+        return
+    }
+
+         
+    else{
+        if(displayContainer.length === 1) {
+            displayContainer = '';
+            equationDisplay.textContent = displayContainer;
+            
+        }
+
+        else{
+        displayContainer = displayContainer.slice(0, -1);  
+        equationDisplay.textContent = displayContainer;
+        }
+    }
+
+    console.log('1st ' + firstValue + '2nd '+ secondValue + '3rd ' + operatorValue)
+
+}
+
+
+
 //Adding the event listener to the the number buttons to put them in the display
 
 numberButtons.forEach(numberButton => {
@@ -174,6 +212,8 @@ clearButton.addEventListener('click', () => clearPressed())
 
 percentButton.addEventListener('click', () => percentPressed()
  )
+
+ deleteButton.addEventListener('click', () => deletePressed())
 
 
 
