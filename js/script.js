@@ -8,19 +8,19 @@ function divide(a, b) {return a / b}
 function operate(a, b, operator){
     switch(operator) {
         case '+':
-            return addition(a, b);
+            return addition(a, b).toFixed(5)
             
         
         case '-':
-            return subtract(a, b)
+            return subtract(a, b).toFixed(5)
             
         
         case 'x':
-            return multiply(a, b)
+            return multiply(a, b).toFixed(5)
             
         
         case '÷':
-            return divide(a, b)
+            return divide(a, b).toFixed(5)
         
     }
 }
