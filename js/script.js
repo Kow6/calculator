@@ -113,7 +113,7 @@ const operationPressed = function(input){
 if (operatorValue === ''){ //put this in an if statement to not allow operator's to be hit multiple times in a row
     calculationRun = false //resets the calculation run variable to let program know the display does not need to clear on next number input
     firstValue = displayContainer;
-    operatorValue = input
+    operatorValue = input;
     displayContainer = displayContainer + ' ' + input + ' ';
     equationDisplay.textContent = displayContainer;
     hasDecimal = false //clear decimal blocker
@@ -157,36 +157,39 @@ const percentPressed = function(){
      equalsPressed()
 }
 
-const deletePressed = function(){
+const deletePressed = function(){ 
     
-    if (displayContainer.slice(-1) === 'x' 
+    if (displayContainer.slice(-1) === 'x'  //if statement to not delete the operator
         || displayContainer.slice(-1) === '-' 
         || displayContainer.slice(-1) === '+' 
-        || displayContainer.slice(-1) === '÷')
+        || displayContainer.slice(-1) === '÷'
+        || displayContainer.slice(-1) === ' ')
     {
         deleteBlocked = true
     }
     
-    if (deleteBlocked === true){
+    if (deleteBlocked === true){ //if statement to not allow if deleteBlocked in on
         console.log(deleteBlocked)
         return
     }
 
          
-    else{
-        if(displayContainer.length === 1) {
+    
+    if (displayContainer.length === 1) { //if the container is only one number delete it
             displayContainer = '';
             equationDisplay.textContent = displayContainer;
             
         }
-
-        else{
-        displayContainer = displayContainer.slice(0, -1);  
+ 
+        else{ //if the container is multiple numbers delete last one
+        displayContainer = displayContainer.slice(0, -1); 
+        secondValue = secondValue.slice(0, -1) 
         equationDisplay.textContent = displayContainer;
         }
-    }
+    
+        //if second value 
 
-    console.log('1st ' + firstValue + '2nd '+ secondValue + '3rd ' + operatorValue)
+    console.log('1st ' + firstValue + ' 2nd '+ secondValue + ' OPP ' + operatorValue)
 
 }
 
