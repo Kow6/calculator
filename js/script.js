@@ -75,6 +75,7 @@ const updateDisplay = function (input) {
     
     if (calculationRun === true){ //a calculation has already been run so entering a new number w/ no operator clear's the display.
        clearPressed()
+       
     }
 
     //if input is a period and the new variable has period is full do this. will need to clear this variable on clear and operation
@@ -145,6 +146,7 @@ firstValue = displayContainer;
 secondValue = '';
 operatorValue = '';
 equationDisplay.textContent = displayContainer;
+console.log('ClearPressed')
  } 
 
 
@@ -160,7 +162,7 @@ const percentPressed = function(){
 
 const deletePressed = function(){ 
     
-    if (displayContainer.slice(-1) === 'x'  //if statement to not delete the operator
+    if (   displayContainer.slice(-1) === 'x'  //if statement to not delete the operator
         || displayContainer.slice(-1) === '-' 
         || displayContainer.slice(-1) === '+' 
         || displayContainer.slice(-1) === '÷'
@@ -208,6 +210,8 @@ numberButtons.forEach(numberButton => {
 
 document.addEventListener('keydown', function(event){
     switch(event.key){
+        case '0':
+            return updateDisplay(event.key)
         case '1':
             return updateDisplay(event.key)
         case '2':
@@ -235,10 +239,11 @@ document.addEventListener('keydown', function(event){
         case '/':
             return operationPressed('÷')
         
-        case 'Enter':
+        case 'Enter': //there is a bug here that enter hit's the clear button as well
             return equalsPressed()
     }
 })
+
 
 
 //Adding event listener to the operation buttons
