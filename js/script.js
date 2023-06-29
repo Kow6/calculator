@@ -4,84 +4,259 @@ function subtract(a, b) {return a - b}
 function multiply(a, b) {return a * b}
 function divide(a, b) {return a / b}
 
+
 //operation funtion
 function operate(a, b, operator){
+    
+    if(operator === '÷' && b === 0){
+        return 'No,No,No'
+    }
+
     switch(operator) {
-        case 'add':
-            return addition(a, b);
+        case '+':
+            return parseFloat(addition(a, b).toFixed(5))
             
         
-        case 'subtract':
-            return subtract(a, b)
+        case '-':
+            return parseFloat(subtract(a, b).toFixed(5))
             
         
-        case 'multiply':
-            return multiply(a, b)
+        case 'x':
+            return parseFloat(multiply(a, b).toFixed(5))
             
         
-        case 'divide':
-            return divide(a, b)
+        case '÷':
+            return parseFloat(divide(a, b).toFixed(5))
+
+
         
     }
 }
 
-//Function to add text to content to display area
 
 
+//setting the variables
+
+let displayContainer =''
+
+let firstValue = ''
+
+let secondValue = ''
+
+let operatorValue = ''
+
+let calculationRun = false
+
+let hasDecimal = false
+
+let deleteBlocked = false
 
 const equationDisplay = document.querySelector('.equationDisplay');
 
 const numberButtons = document.querySelectorAll('.number');
 
-//Funtion to call to put the number in the display when a button is clicked
+const operationButtons = document.querySelectorAll('.operation');
+
+const equalsButton = document.querySelector('.equals')
+
+const clearButton = document.querySelector('.clear')
+
+const percentButton = document.querySelector('.percent')
+
+const deleteButton = document.querySelector('.delete')
 
 
 
 
 
+//Function to call to put the number in the display when a button is clicked. Does not set the actual values of the variables.
+    
 const updateDisplay = function (input) {
-   
-    equationDisplay.textContent = input;
+    
+    if (calculationRun === true){ //a calculation has already been run so entering a new number w/ no operator clear's the display.
+       clearPressed()
+    }
+
+    //if input is a period and the new variable has period is full do this. will need to clear this variable on clear and operation
+  
+    
+    if(input === '.' && hasDecimal === true){ //decimal check
+        return 
+    }
+
+    if(input === '.'){
+        hasDecimal = true
+    }
+    
+    calculationRun = false
+    deleteBlocked = false
+    displayContainer = displayContainer + input
+    equationDisplay.textContent = displayContainer;
+    
+    if (operatorValue != ''){ //if the operatorValue is full that means the second value of the equation should be being populated
+        secondValue = secondValue + input;
+        
+    }
+
+
 };
 
+const operationPressed = function(input){
+    if (displayContainer === 'No,No,No' || displayContainer === ''){
+        updateDisplay(0)
+    }
+    if (secondValue != ''){ //code to check if when operator is pressed both values already exist then do the initial calculation
+        equalsPressed();
+        }
+
+        
+if (operatorValue === ''){ //put this in an if statement to not allow operator's to be hit multiple times in a row
+    calculationRun = false //resets the calculation run variable to let program know the display does not need to clear on next number input
+    firstValue = displayContainer;
+    operatorValue = input;
+    displayContainer = displayContainer + ' ' + input + ' ';
+    equationDisplay.textContent = displayContainer;
+    hasDecimal = false //clear decimal blocker
+}    
+    
+else{console.log(operatorValue)}
+}
 
 
+const equalsPressed = function(){
+    displayContainer = (operate(Number(firstValue), Number(secondValue), operatorValue))
+    equationDisplay.textContent = displayContainer;
+    
+    //set up variables for next operation
+    firstValue = displayContainer;
+    secondValue = '' 
+    operatorValue = ''; 
+    calculationRun = true 
+    hasDecimal = false 
+ 
+}
+
+
+
+const clearPressed  = function()
+{displayContainer = '';
+firstValue = displayContainer;
+secondValue = '';
+operatorValue = '';
+equationDisplay.textContent = displayContainer;
+ } 
+
+
+const percentPressed = function(){
+    if (operatorValue != ''){
+        return
+    }
+    firstValue = displayContainer;
+    secondValue = .01
+    operatorValue = 'x'
+     equalsPressed()
+}
+
+const deletePressed = function(){ 
+    
+    if (displayContainer.slice(-1) === 'x'  //if statement to not delete the operator
+        || displayContainer.slice(-1) === '-' 
+        || displayContainer.slice(-1) === '+' 
+        || displayContainer.slice(-1) === '÷'
+        || displayContainer.slice(-1) === ' ')
+    {
+        deleteBlocked = true
+    }
+    
+    if (deleteBlocked === true){ //if statement to not allow if deleteBlocked in on
+        console.log(deleteBlocked)
+        return
+    }
+
+         
+    
+    if (displayContainer.length === 1) { //if the container is only one number delete it
+            if (displayContainer === '.'){hasDecimal = false} //reset decimal blocker if that is the only thing entered so far
+            displayContainer = '';
+            equationDisplay.textContent = displayContainer;
+            
+        }
+ 
+        else{ //if the container is multiple numbers delete last one
+        if(displayContainer.slice(-1) === '.'){hasDecimal = false} //if about to delete decimal remove the blocker
+        displayContainer = displayContainer.slice(0, -1); 
+        secondValue = secondValue.slice(0, -1) //trim second value as well
+        equationDisplay.textContent = displayContainer;
+        }
+    
+        //if second value 
+
+    console.log('1st ' + firstValue + ' 2nd '+ secondValue + ' OPP ' + operatorValue)
+
+}
+
+
+//Adding the event listener to the the number buttons to put them in the display
 
 numberButtons.forEach(numberButton => {
     
     numberButton.addEventListener('click', () => 
     updateDisplay(numberButton.textContent)
-   
-  
     );
 })
 
+document.addEventListener('keydown', function(event){
+    switch(event.key){
+        case '1':
+            return updateDisplay(event.key)
+        case '2':
+            return updateDisplay(event.key)
+        case '3':
+            return updateDisplay(event.key)
+        case '4':
+            return updateDisplay(event.key)
+        case '5':
+            return updateDisplay(event.key)
+        case '6':
+            return updateDisplay(event.key)
+        case '7':
+            return updateDisplay(event.key)
+        case '8':
+            return updateDisplay(event.key)
+        case '9':
+            return updateDisplay(event.key)
+        case '+':
+            return operationPressed(event.key)
+        case '-':
+            return operationPressed(event.key)
+        case '*':
+            return operationPressed('x')
+        case '/':
+            return operationPressed('÷')
+        case 'Enter':
+            return equalsPressed()
+    }
+})
+
+
+//Adding event listener to the operation buttons
+operationButtons.forEach(operationButton => {
+    operationButton.addEventListener('click', () => operationPressed(operationButton.textContent))
+})
+
+equalsButton.addEventListener('click', () => equalsPressed())
+
+clearButton.addEventListener('click', () => clearPressed())
+
+percentButton.addEventListener('click', () => percentPressed()
+ )
+
+deleteButton.addEventListener('click', () => deletePressed())
 
 
 
 
 
-//get the text content of the button
-//put that text content in displayEquation w/addtextcontent (copy) => displayEquation.textContent = copy
-
-
-
-/* OLD WAY w/ funtion per # function
-let a
-function clickOne() {
-    a = 1
-}
-
-function clickTwo() {
-    a = 2
-}
-
-const oneButton = document.querySelector('#one');
-oneButton.addEventListener('click', () => clickOne())
-
-const twoButton = document.querySelector('#two');
-oneButton.addEventListener('click', () => clickTwo())
-*/
 
 
 
