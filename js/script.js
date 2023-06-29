@@ -176,12 +176,14 @@ const deletePressed = function(){
          
     
     if (displayContainer.length === 1) { //if the container is only one number delete it
+            if (displayContainer === '.'){hasDecimal = false} //reset decimal blocker if that is the only thing entered so far
             displayContainer = '';
             equationDisplay.textContent = displayContainer;
             
         }
  
         else{ //if the container is multiple numbers delete last one
+        if(displayContainer.slice(-1) === '.'){hasDecimal = false} //if about to delete decimal remove the blocker
         displayContainer = displayContainer.slice(0, -1); 
         secondValue = secondValue.slice(0, -1) //trim second value as well
         equationDisplay.textContent = displayContainer;
