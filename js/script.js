@@ -126,13 +126,14 @@ else{console.log(operatorValue)}
 const equalsPressed = function(){
     displayContainer = (operate(Number(firstValue), Number(secondValue), operatorValue))
     equationDisplay.textContent = displayContainer;
-    
+    console.log('1st ' + firstValue + ' 2nd '+ secondValue + ' OPP ' + operatorValue) 
     //set up variables for next operation
     firstValue = displayContainer;
     secondValue = '' 
     operatorValue = ''; 
     calculationRun = true 
-    hasDecimal = false 
+    hasDecimal = false;
+
  
 }
 
@@ -233,6 +234,7 @@ document.addEventListener('keydown', function(event){
             return operationPressed('x')
         case '/':
             return operationPressed('÷')
+        
         case 'Enter':
             return equalsPressed()
     }
