@@ -61,6 +61,20 @@ button{
     background-color: darkgray;  
 }
 
+button:active {
+    top: 2px;
+    left: 1px;
+    box-shadow: none;
+    background-color: lightcyan;
+    }
+
+.number:active {
+top: 2px;
+left: 1px;
+box-shadow: none;
+background-color: aquamarine;
+}
+
 .number{
 background-color: #EFEFEF;
 }

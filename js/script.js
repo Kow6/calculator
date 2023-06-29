@@ -183,7 +183,7 @@ const deletePressed = function(){
  
         else{ //if the container is multiple numbers delete last one
         displayContainer = displayContainer.slice(0, -1); 
-        secondValue = secondValue.slice(0, -1) 
+        secondValue = secondValue.slice(0, -1) //trim second value as well
         equationDisplay.textContent = displayContainer;
         }
     
@@ -204,6 +204,10 @@ numberButtons.forEach(numberButton => {
     );
 })
 
+
+
+
+
 //Adding event listener to the operation buttons
 operationButtons.forEach(operationButton => {
     operationButton.addEventListener('click', () => operationPressed(operationButton.textContent))
@@ -216,7 +220,7 @@ clearButton.addEventListener('click', () => clearPressed())
 percentButton.addEventListener('click', () => percentPressed()
  )
 
- deleteButton.addEventListener('click', () => deletePressed())
+deleteButton.addEventListener('click', () => deletePressed())
 
 
 
