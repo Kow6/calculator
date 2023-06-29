@@ -196,7 +196,6 @@ const deletePressed = function(){
 }
 
 
-
 //Adding the event listener to the the number buttons to put them in the display
 
 numberButtons.forEach(numberButton => {
@@ -206,8 +205,38 @@ numberButtons.forEach(numberButton => {
     );
 })
 
-
-
+document.addEventListener('keydown', function(event){
+    switch(event.key){
+        case '1':
+            return updateDisplay(event.key)
+        case '2':
+            return updateDisplay(event.key)
+        case '3':
+            return updateDisplay(event.key)
+        case '4':
+            return updateDisplay(event.key)
+        case '5':
+            return updateDisplay(event.key)
+        case '6':
+            return updateDisplay(event.key)
+        case '7':
+            return updateDisplay(event.key)
+        case '8':
+            return updateDisplay(event.key)
+        case '9':
+            return updateDisplay(event.key)
+        case '+':
+            return operationPressed(event.key)
+        case '-':
+            return operationPressed(event.key)
+        case '*':
+            return operationPressed('x')
+        case '/':
+            return operationPressed('÷')
+        case 'Enter':
+            return equalsPressed()
+    }
+})
 
 
 //Adding event listener to the operation buttons
