@@ -13,8 +13,9 @@ main {
 .device{
    
     
-    height: 675px;
-    width: 400px;  
+    height: 80%;
+    width: 90%;
+    max-width: 400px;  
     border: black solid 1px;
 }
 
