@@ -11,8 +11,10 @@ main {
 }
 
 .device{
-    height: 80%;
-    width: 400px;
+   
+    
+    height: 675px;
+    width: 400px;  
     border: black solid 1px;
 }
 
@@ -44,7 +46,7 @@ main {
 
 .buttonRow{
     height: 15%;
-    width: 400px;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
