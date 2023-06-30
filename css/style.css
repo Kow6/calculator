@@ -59,6 +59,7 @@ main {
 button{
     aspect-ratio: 1 / 1;
     width: 21%;
+    max-height: 95%;
     border-radius: 15px;
     font-size: larger; 
     background-color: darkgray;  
